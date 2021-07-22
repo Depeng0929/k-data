@@ -1,0 +1,11 @@
+{
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "extends": "@depeng9527/eslint-config",
+  "plugins": ["jest"],
+  "rules": {
+    "no-restricted-syntax": "off"
+  }
+}

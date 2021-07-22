@@ -1,0 +1,54 @@
+{
+  "name": "k-data",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "description": "Personal Data Structure",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Depeng0929/k-data.git"
+  },
+  "author": "Depeng0929 <15365182986@163.com>",
+  "files": [
+    "dist",
+    "index.d.ts"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.js"
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "rimraf dist && tsup src/index.ts --format cjs,esm --dts",
+    "dev": "pnpm -C demo run dev",
+    "lint": "eslint '**/*.{js,ts,vue,json}' --fix"
+  },
+  "bugs": {
+    "url": "https://github.com/Depeng0929/k-data/issues"
+  },
+  "homepage": "https://github.com/Depeng0929/k-data#readme",
+  "devDependencies": {
+    "@depeng9527/eslint-config": "^1.0.1",
+    "@types/jest": "^26.0.24",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "bumpp": "^6.0.6",
+    "eslint": "^7.31.0",
+    "eslint-plugin-jest": "^24.4.0",
+    "jest": "^27.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.4",
+    "tsup": "^4.12.5",
+    "typescript": "^4.3.5",
+    "zx": "^2.0.0"
+  }
+}
