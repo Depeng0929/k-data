@@ -1,15 +1,15 @@
-import { Stack } from '../../../src'
+import { Queue } from '../../../src'
 
-describe('stack', () => {
+describe('queue', () => {
   const a = [1, 2, 3]
-  let s = new Stack(a)
+  let s = new Queue(a)
 
   beforeEach(() => {
-    s = new Stack(a)
+    s = new Queue(a)
   })
 
   it('init', () => {
-    const s2 = new Stack()
+    const s2 = new Queue()
 
     expect(s2.size).toBe(0)
     expect(s2.isEmpty).toBeTruthy()
@@ -19,19 +19,19 @@ describe('stack', () => {
   })
 
   it('peek', () => {
-    expect(s.peek()).toBe(3)
+    expect(s.peek()).toBe(1)
   })
 
-  it('push', () => {
-    s.push(4)
+  it('enqueue', () => {
+    s.enqueue(4)
 
     expect(s.size).toBe(4)
     expect(s.isEmpty).toBeFalsy()
-    expect(s.peek()).toBe(4)
+    expect(s.peek()).toBe(1)
   })
 
-  it('pop', () => {
-    expect(s.pop()).toBe(3)
+  it('dequeue', () => {
+    expect(s.dequeue()).toBe(1)
     expect(s.peek()).toBe(2)
     expect(s.size).toBe(2)
   })
@@ -44,7 +44,7 @@ describe('stack', () => {
 
   it('pop over range', () => {
     s.clear()
-    expect(s.pop()).toBeUndefined()
+    expect(s.dequeue()).toBeUndefined()
     expect(s.size).toBe(0)
   })
 
@@ -52,13 +52,13 @@ describe('stack', () => {
     let count = 0
     while (!s.isEmpty) {
       count++
-      s.pop()
+      s.dequeue()
     }
     expect(count).toBe(3)
   })
 
   it('source pollution', () => {
-    s.push(4)
+    s.enqueue(4)
     expect(a.length).toBe(3)
   })
 })
