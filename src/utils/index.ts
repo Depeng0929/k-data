@@ -1,4 +1,4 @@
-import { Compare } from '../types'
+import { Compare } from '../types/index.d'
 
 export function isPlainObject(val: unknown) {
   return Object.prototype.toString.call(val) === '[object Object]'
@@ -18,7 +18,7 @@ export function deepClone(val: any) {
 
 export function defaultCompareFn(a: any, b: any): Compare {
   if (a === b)
-    return Compare.EQUAL
+    return 0
 
-  return a < b ? Compare.LESS : Compare.MORE
+  return a < b ? -1 : 1
 }
