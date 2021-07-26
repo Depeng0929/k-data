@@ -17,3 +17,16 @@ yarn add @depeng9527/k-data
 | clear   | 方法 | 清除栈中所有       | void    |
 | peek    | 方法 | 返回栈中第一个元素 | T       |
 
+
+
+## Queue
+
+| name    | type | description    | return  |
+| ------- | ---- | -------------- | ------- |
+| size    | 属性 | 大小长度       | number  |
+| isEmpty | 属性 | 是否为空       | boolean |
+| enqueue | 方法 | 添加           | void    |
+| dequeue | 方法 | 出列           | T       |
+| clear   | 方法 | 清除所有       | void    |
+| peek    | 方法 | 返回第一个元素 | T       |
+
