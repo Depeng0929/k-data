@@ -1,18 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <div class="app">
+    <ul>
+      <ol>
+        <router-link :to="{ path: '/' }">
+          home
+        </router-link>
+      </ol>
+      <ol>
+        <router-link :to="{ path: '/tree-node' }">
+          treeNode
+        </router-link>
+      </ol>
+    </ul>
+
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 
-import HelloWorld from './components/HelloWorld.vue'
-
 export default defineComponent({
   name: 'App',
-  components: {
-    HelloWorld,
-  },
 })
 </script>
 
@@ -21,8 +30,16 @@ export default defineComponent({
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100vh;
+}
+body, html {
+  margin: 0;
+  padding: 0;
+}
+.app ul {
+  min-height: 400px;
+  display: flex;
+  justify-content: space-around;
 }
 </style>

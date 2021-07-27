@@ -37,9 +37,11 @@ importers:
       typescript: ^4.3.2
       vite: ^2.4.3
       vue: ^3.0.5
+      vue-router: '4'
       vue-tsc: ^0.0.24
     dependencies:
       vue: registry.nlark.com/vue/3.1.5
+      vue-router: registry.nlark.com/vue-router/4.0.10_vue@3.1.5
     devDependencies:
       '@vitejs/plugin-vue': registry.nlark.com/@vitejs/plugin-vue/1.2.5_@vue+compiler-sfc@3.1.5
       '@vue/compiler-sfc': registry.nlark.com/@vue/compiler-sfc/3.1.5_vue@3.1.5
@@ -3167,6 +3169,12 @@ packages:
       '@vue/shared': registry.nlark.com/@vue/shared/3.1.5
     dev: true
 
+  registry.nlark.com/@vue/devtools-api/6.0.0-beta.15:
+    resolution: {integrity: sha1-rXyzhOBi8WW8+cg3MhJb/7wq2D0=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@vue/devtools-api/download/@vue/devtools-api-6.0.0-beta.15.tgz}
+    name: '@vue/devtools-api'
+    version: 6.0.0-beta.15
+    dev: false
+
   registry.nlark.com/@vue/reactivity/3.1.5:
     resolution: {integrity: sha1-2+xNlVf3yPJcJjXbHiOninKeuZE=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/@vue/reactivity/download/@vue/reactivity-3.1.5.tgz}
     name: '@vue/reactivity'
@@ -5781,6 +5789,18 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  registry.nlark.com/vue-router/4.0.10_vue@3.1.5:
+    resolution: {integrity: sha1-7I/aAylJsqMdMnMXD483bobrUqw=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vue-router/download/vue-router-4.0.10.tgz}
+    id: registry.nlark.com/vue-router/4.0.10
+    name: vue-router
+    version: 4.0.10
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      '@vue/devtools-api': registry.nlark.com/@vue/devtools-api/6.0.0-beta.15
+      vue: registry.nlark.com/vue/3.1.5
+    dev: false
 
   registry.nlark.com/vue-tsc/0.0.24:
     resolution: {integrity: sha1-DNkNtnn1PqFpQlS4Zj/bPWJKCHI=, registry: http://registry.npm.taobao.org/, tarball: https://registry.nlark.com/vue-tsc/download/vue-tsc-0.0.24.tgz}
