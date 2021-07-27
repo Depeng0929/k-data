@@ -47,9 +47,9 @@ describe('queue', () => {
     expect(list.print()).toEqual([4, 2, 1, 3])
   })
 
-  it('getElementAt', () => {
-    expect(list.getElementAt(-1)).toBeNull()
-    expect(list.getElementAt(2)!.val).toBe(1)
+  it('getNodeAt', () => {
+    expect(list.getNodeAt(-1)).toBeNull()
+    expect(list.getNodeAt(2)!.val).toBe(1)
   })
 
   it('remove', () => {
@@ -67,5 +67,14 @@ describe('queue', () => {
   it('indexOf', () => {
     expect(list.indexOf(2)).toBe(1)
     expect(list.indexOf(10)).toBe(-1)
+  })
+
+  it('sort', () => {
+    expect(list.sort().print()).toEqual([1, 2, 3, 4])
+    expect(list.size).toBe(4)
+  })
+  it('sort abnormal', () => {
+    list = new LinkList([1, 2])
+    expect(list.sort().print()).toEqual([1, 2])
   })
 })

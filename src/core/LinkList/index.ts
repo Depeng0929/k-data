@@ -60,7 +60,7 @@ class LinkList <T = unknown> {
       node.next = current
     }
     else {
-      const prev = this.getElementAt(index - 1)
+      const prev = this.getNodeAt(index - 1)
       const current = prev!.next
       prev!.next = node
       node.next = current
@@ -70,7 +70,7 @@ class LinkList <T = unknown> {
     return true
   }
 
-  public getElementAt(index: number) {
+  public getNodeAt(index: number) {
     if (this.isEmpty) return null
     if (index > this.count || index < 0) return null
 
@@ -96,7 +96,7 @@ class LinkList <T = unknown> {
       this.head = current!.next
     }
     else {
-      const prev = this.getElementAt(index - 1)
+      const prev = this.getNodeAt(index - 1)
       current = prev!.next
       prev!.next = current!.next
     }
@@ -123,8 +123,54 @@ class LinkList <T = unknown> {
     this.count = 0
   }
 
-  public sort() {
-    // ...
+  // 归并排序
+  public sort(): LinkList<T> {
+    this.head = this.sortLinkList(this.head, null)
+    return this
+  }
+
+  private sortLinkList(head: INode | null, tail: INode | null): INode<any> | null {
+    if (head === null) return null
+    if (head.next === tail) {
+      head.next = null
+      return head
+    }
+
+    // find mid
+    let fast = head
+    let slow = head
+    while (fast !== tail) {
+      slow = slow.next!
+      fast = fast.next!
+      if (fast !== null)
+        fast = fast.next!
+    }
+
+    return this.sortMerge(this.sortLinkList(head, slow), this.sortLinkList(slow, tail))
+  }
+
+  private sortMerge(list1: INode<T> | null, list2: INode<T> | null) {
+    const newHead = new INode(-1)
+    let tmp = newHead
+    while (list1 !== null && list2 !== null) {
+      if (this.compareFn(list1.val, list2.val) === -1) {
+        tmp.next = list1 as INode<any>
+        list1 = list1.next
+      }
+      else {
+        tmp.next = list2 as INode<any>
+        list2 = list2.next
+      }
+      tmp = tmp.next
+    }
+
+    if (list1 !== null)
+      tmp.next = list1 as INode<any>
+
+    else if (list2 !== null)
+      tmp.next = list2 as INode<any>
+
+    return newHead.next
   }
 
   private isOverRange(index: number) {
