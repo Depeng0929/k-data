@@ -22,3 +22,9 @@ export function defaultCompareFn(a: any, b: any): Compare {
 
   return a < b ? -1 : 1
 }
+
+export function defaultSwap(arr: any[], a: number, b: number) {
+  const tmp = arr[a]
+  arr[a] = arr[b]
+  arr[b] = tmp
+}
