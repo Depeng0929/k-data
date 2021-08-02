@@ -1,9 +1,9 @@
 class INode<T = unknown> {
-  public next: INode<T> | null
+  public prev: INode<T> | null = null
+  public next: INode<T> | null = null
   constructor(
     public val: T,
   ) {
-    this.next = null
   }
 }
 

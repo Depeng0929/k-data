@@ -35,18 +35,7 @@ class LinkList <T = unknown> {
   }
 
   public push(val: T) {
-    const node = new INode(val)
-    if (this.head === null) {
-      this.head = node
-    }
-    else {
-      let current = this.head
-      while (current.next)
-        current = current.next
-
-      current.next = node
-    }
-    this.count++
+    this.insert(0, val)
   }
 
   public insert(index: number, val: T) {

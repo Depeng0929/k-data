@@ -1,4 +1,3 @@
-import { defaultCompareFn } from '../../utils'
 import DoublyNode from './DoublyNode'
 import LinkList from './index'
 
@@ -32,13 +31,42 @@ class DoublyList<T = unknown> extends LinkList<T> {
     }
     else {
       const prevElement = this.getNodeAt(index - 1)!
-      current = prevElement.next
+      current = prevElement.next!
       node.next = current
       prevElement.next = node
       current.prev = node
       node.prev = prevElement
     }
+    this.count++
     return true
+  }
+
+  public removeAt(index: number) {
+    if (this.isOverRange(index)) return null
+
+    let current = this.head!
+    if (index === 0) {
+      if (this.count === 1) {
+        this.clear()
+      }
+      else {
+        this.head = current.next!
+        this.head.prev = null
+      }
+    }
+    else if (index === this.count - 1) {
+      current = this.tail!
+      this.tail = current.prev!
+      this.tail.next = null
+    }
+    else {
+      current = this.getNodeAt(index)!
+      const prev = current.prev!
+      prev.next = current.next
+      current.next!.prev = prev
+    }
+    this.count--
+    return current.val
   }
 
   public clear() {

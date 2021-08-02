@@ -1,12 +1,12 @@
+import INode from './Node'
 
-class DoublyNode<T = unknown> {
-  public prev: DoublyNode<T> | null
-  public next: DoublyNode<T> | null
+class DoublyNode<T = unknown> extends INode {
+  public prev: DoublyNode<T> | null = null
+  public next: DoublyNode<T> | null = null
   constructor(
     public val: T,
   ) {
-    this.prev = null
-    this.next = null
+    super(val)
   }
 }
 
