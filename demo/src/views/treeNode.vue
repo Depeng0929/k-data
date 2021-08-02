@@ -24,7 +24,7 @@ export default defineComponent({
     treeNode1.add(treeNode11).add(treeNode12).add(treeNode13)
     treeNode2.add(treeNode21).add(treeNode22).add(treeNode23)
 
-    console.log(rootTreeNode)
+    rootTreeNode.breadthFirstSearch(console.log, true)
   },
 })
 </script>

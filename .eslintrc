@@ -6,6 +6,7 @@
   "extends": "@depeng9527/eslint-config",
   "plugins": ["jest"],
   "rules": {
-    "no-restricted-syntax": "off"
+    "no-restricted-syntax": "off",
+    "no-unmodified-loop-condition": "off"
   }
 }

@@ -32,6 +32,16 @@ yarn add @depeng9527/k-data
 
 
 
+## PriorityQueue
+
+同`Queue`
+
+
+
+
+
+
+
 ## LinkList
 
 | name      | type | description               | return        |
@@ -49,3 +59,27 @@ yarn add @depeng9527/k-data
 | sort      | 方法 | 链表排序（归并排序）                  | Void          |
 | remove    | 方法 | 删除指定val的节点(第一个) | T \|null      |
 
+
+
+## TreeNode
+
+| name               | type | description            | return        |
+| ------------------ | ---- | ---------------------- | ------------- |
+| children           | 属性 | 当前树节点的子节点     | TreeNode<T>[] |
+| level              | 属性 | 当前节点的深度         | number        |
+| add                | 方法 | 添加子节点             | TreeNode<T>   |
+| remove             | 方法 | 移除当前节点           | void          |
+| breadthFirstSearch | 方法 | 广度遍历(包括当前节点) |               |
+|                    |      |                        |               |
+
+
+
+## Graph
+
+| name               | type | description      | return |
+| ------------------ | ---- | ---------------- | ------ |
+| addVertex          | 方法 | 添加图的各个顶点 |        |
+| addEdge            | 方法 | 建立顶点之间关系 |        |
+| breadthFirstSearch | 方法 | 广度遍历         | T      |
+| depthFirstSearch   | 方法 | 深度遍历         | T      |
+|                    |      |                  |        |

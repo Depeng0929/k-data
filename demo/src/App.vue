@@ -7,8 +7,18 @@
         </router-link>
       </ol>
       <ol>
+        <router-link :to="{ path: '/priority' }">
+          priority
+        </router-link>
+      </ol>
+      <ol>
         <router-link :to="{ path: '/tree-node' }">
           treeNode
+        </router-link>
+      </ol>
+      <ol>
+        <router-link :to="{ path: '/graph' }">
+          graph
         </router-link>
       </ol>
     </ul>

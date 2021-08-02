@@ -4,11 +4,19 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('../views/home.vue'),
-    redirect: '/tree-node',
+
   },
   {
     path: '/tree-node',
     component: () => import('../views/treeNode.vue'),
+  },
+  {
+    path: '/graph',
+    component: () => import('../views/graph.vue'),
+  },
+  {
+    path: '/priority',
+    component: () => import('../views/priorityQueue.vue'),
   },
 ]
 
