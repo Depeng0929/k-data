@@ -3,7 +3,7 @@ import INode from './Node'
 
 class LinkList <T = unknown> {
   public head: INode<T> | null = null
-  private count = 0
+  protected count = 0
 
   constructor(
     items: T[] = [],
@@ -173,7 +173,7 @@ class LinkList <T = unknown> {
     return newHead.next
   }
 
-  private isOverRange(index: number) {
+  protected isOverRange(index: number) {
     return index > this.count || index < 0
   }
 
