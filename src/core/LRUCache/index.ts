@@ -1,4 +1,4 @@
-import DoublyList from '../LinkList/DoublyList'
+import DoublyList from '../LinkList/DoublyLinkList'
 import DoublyNode from '../LinkList/DoublyNode'
 
 class LRUCache<T = unknown> {
