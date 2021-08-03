@@ -4,27 +4,24 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { TreeNode } from '../../../src/index'
+import { TreeNode, Tree } from '../../../src/index'
 
 export default defineComponent({
   name: 'TreeNode',
   setup() {
-    const rootTreeNode = new TreeNode(0)
-    const treeNode1 = new TreeNode(1)
-    const treeNode2 = new TreeNode(2)
+    const tree1 = new Tree('tree1')
+    const tree2 = new Tree('tree2')
+    const tree3 = new Tree('tree3')
+    const node1 = new TreeNode('node1')
+    const node2 = new TreeNode('node2')
+    const node3 = new TreeNode('node3')
 
-    const treeNode11 = new TreeNode(11)
-    const treeNode21 = new TreeNode(21)
-    const treeNode12 = new TreeNode(12)
-    const treeNode22 = new TreeNode(22)
-    const treeNode13 = new TreeNode(13)
-    const treeNode23 = new TreeNode(23)
+    tree1.add(tree2).add(tree3)
+    tree2.add(node1).add(node2)
+    tree3.add(node3)
 
-    rootTreeNode.add(treeNode1).add(treeNode2)
-    treeNode1.add(treeNode11).add(treeNode12).add(treeNode13)
-    treeNode2.add(treeNode21).add(treeNode22).add(treeNode23)
-
-    rootTreeNode.breadthFirstSearch(console.log, true)
+    tree2.remove()
+    console.log(tree1)
   },
 })
 </script>

@@ -17,7 +17,10 @@ class Graph<T = string> {
   ) {
   }
 
-  // 添加图的顶点
+  /**
+   * 添加顶点
+   * @param v {T} 顶点信息
+   */
   public addVertex(v: T) {
     if (!this.vertices.includes(v)) {
       this.vertices.push(v)
@@ -26,7 +29,11 @@ class Graph<T = string> {
     }
   }
 
-  // 设置两个顶点的关系
+  /**
+   * 建立两个顶点之间的联系
+   * @param v {T}
+   * @param w {T}
+   */
   public addEdge(v: T, w: T) {
     if (!this.adjList.get(v))
       this.addVertex(v)
@@ -39,7 +46,11 @@ class Graph<T = string> {
       this.adjList.get(w)?.push(v)
   }
 
-  // 广度优先
+  /**
+   * 广度优先
+   * @param callback
+   * @param startVertex
+   */
   public breadthFirstSearch(
     callback: (e: T) => any = () => {},
     startVertex: T = this.vertices[0],
@@ -65,7 +76,10 @@ class Graph<T = string> {
     }
   }
 
-  // 深度优先
+  /**
+   * 深度优先
+   * @param callback
+   */
   public depthFirstSearch(callback: (p: T) => any = () => {}) {
     this.clearColors()
 

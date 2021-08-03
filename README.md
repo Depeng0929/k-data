@@ -61,16 +61,17 @@ yarn add @depeng9527/k-data
 
 
 
-## TreeNode
+## Tree
+注意此tree不是传统意义上的数据结构，而是前端业务常用的value, children树形结构。
 
-| name               | type | description            | return        |
-| ------------------ | ---- | ---------------------- | ------------- |
-| children           | 属性 | 当前树节点的子节点     | TreeNode<T>[] |
-| level              | 属性 | 当前节点的深度         | number        |
-| add                | 方法 | 添加子节点             | TreeNode<T>   |
-| remove             | 方法 | 移除当前节点           | void          |
-| breadthFirstSearch | 方法 | 广度遍历(包括当前节点) |               |
-|                    |      |                        |               |
+| name               | type | description          | return  |
+| ------------------ | ---- | -------------------- | ------- |
+| level              | 属性 | 当前树的深度         | number  |
+| add                | 方法 | 添加节点             | Tree<T> |
+| remove             | 方法 | 删除当前节点         | void    |
+| isLeaf             | 方法 | 是否是treeNode类     | boolean |
+| excute             | 方法 | 深度优先执行callback | void    |
+| breadthFirstSearch | 方法 | 广度优先执行callback |         |
 
 
 

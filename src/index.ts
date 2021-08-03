@@ -3,6 +3,7 @@ import Queue from './core/Queue'
 import LinkList from './core/LinkList'
 import PriorityQueue from './core/Queue/PriorityQueue'
 import TreeNode from './core/Tree/TreeNode'
+import Tree from './core/Tree/index'
 import Graph from './core/Graph'
 
 export {
@@ -10,6 +11,7 @@ export {
   Queue,
   LinkList,
   TreeNode,
+  Tree,
   Graph,
   PriorityQueue,
 }
