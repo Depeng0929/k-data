@@ -7,6 +7,10 @@ const routes: RouteRecordRaw[] = [
 
   },
   {
+    path: '/link-list',
+    component: () => import('../views/linkList.vue'),
+  },
+  {
     path: '/tree-node',
     component: () => import('../views/treeNode.vue'),
   },

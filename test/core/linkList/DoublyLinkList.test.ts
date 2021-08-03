@@ -1,10 +1,10 @@
-import { LinkList } from '../../../src'
+import { DoublyLinkList } from '../../../src'
 
-describe('LinkList', () => {
-  let list = new LinkList([4, 2, 1, 3])
+describe('DoublyLinkList', () => {
+  let list = new DoublyLinkList([4, 2, 1, 3])
 
   beforeEach(() => {
-    list = new LinkList([4, 2, 1, 3])
+    list = new DoublyLinkList([4, 2, 1, 3])
   })
   afterEach(() => {
     list.clear()

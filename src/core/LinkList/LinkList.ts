@@ -1,19 +1,15 @@
 import { defaultCompareFn } from '../../utils'
-
-class LinkNode<T = unknown> {
-  public next: LinkNode<T> | undefined = undefined
-  constructor(
-    public val: T,
-  ) {}
-}
-
+import { ICompareFn } from '../../types'
+import LinkNode from './LinkNode'
 class LinkList<T = unknown> {
   protected head: LinkNode<T> | undefined = undefined
   protected count = 0
 
   constructor(
-    protected compareFn: typeof defaultCompareFn = defaultCompareFn,
+    private items: T[] = [],
+    protected compareFn: ICompareFn = defaultCompareFn,
   ) {
+    this.init()
   }
 
   /**
@@ -45,7 +41,7 @@ class LinkList<T = unknown> {
    */
   public remove(val: T) {
     const index = this.indexOf(val)
-    if (!this.overIndexRange(index))
+    if (!(index >= this.count || index < 0))
       return this.removeAt(index)
 
     return undefined
@@ -56,8 +52,8 @@ class LinkList<T = unknown> {
    * @param index 索引
    * @returns {T}
    */
-  public removeAt(index: number): T {
-    if (this.isEmpty || this.overIndexRange(index)) return undefined
+  public removeAt(index: number): T | undefined {
+    if (this.isEmpty || (index >= this.count || index < 0)) return undefined
 
     let current = this.head!
     if (index === 0) {
@@ -80,7 +76,7 @@ class LinkList<T = unknown> {
    * @returns {boolean}
    */
   public insert(index: number, val: T): boolean {
-    if (this.overIndexRange(index))
+    if ((index > this.count || index < 0))
       return false
 
     const node = new LinkNode(val)
@@ -108,7 +104,7 @@ class LinkList<T = unknown> {
   }
 
   public push(val: T) {
-    this.insert(this.count - 1, val)
+    this.insert(this.count, val)
   }
 
   /**
@@ -132,7 +128,7 @@ class LinkList<T = unknown> {
    * @returns {LinkNode<T>}
    */
   public getNodeAt(index: number) {
-    if (this.isEmpty || this.overIndexRange(index)) return undefined
+    if (this.isEmpty || (index >= this.count || index < 0)) return undefined
 
     let current = this.head
     for (let i = 0; i < index && current; i++)
@@ -149,20 +145,19 @@ class LinkList<T = unknown> {
   public indexOf(val: T) {
     if (this.isEmpty) return -1
 
-    const current = this.head
+    let current = this.head
+
     for (let i = 0; i < this.count && current; i++) {
       if (this.compareFn(current.val, val) === 0)
         return i
+      current = current.next
     }
     return -1
   }
 
-  protected overIndexRange(index: number) {
-    return index >= this.count || index < 0
+  protected init() {
+    this.items.forEach(item => this.push(item))
   }
 }
 
-export {
-  LinkList as AbstractList,
-  LinkNode as AbstractNode,
-}
+export default LinkList

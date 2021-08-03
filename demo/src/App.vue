@@ -1,26 +1,31 @@
 <template>
   <div class="app">
     <ul>
-      <ol>
+      <li>
         <router-link :to="{ path: '/' }">
           home
         </router-link>
-      </ol>
-      <ol>
+      </li>
+      <li>
+        <router-link :to="{ path: '/link-list' }">
+          LinkList
+        </router-link>
+      </li>
+      <li>
         <router-link :to="{ path: '/priority' }">
           priority
         </router-link>
-      </ol>
-      <ol>
+      </li>
+      <li>
         <router-link :to="{ path: '/tree-node' }">
           treeNode
         </router-link>
-      </ol>
-      <ol>
+      </li>
+      <li>
         <router-link :to="{ path: '/graph' }">
           graph
         </router-link>
-      </ol>
+      </li>
     </ul>
 
     <router-view></router-view>
