@@ -5,13 +5,6 @@ import DoublyLinkNode from './DoublyLinkNode'
 class DoublyLinkList<T = unknown> extends LinkList<T> {
   protected tail: DoublyLinkNode<T> | undefined
   declare protected head: DoublyLinkNode<T> | undefined
-  constructor(
-    options?: ILinkListOptions<T>,
-  ) {
-    super(options)
-
-    this.init()
-  }
 
   /**
    * 清空双向链表
@@ -27,7 +20,7 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
    * @param b {number} 索引
    */
   public swap(a: number, b: number) {
-    if (a === b)
+    if (a === b || this.size < 2)
       return false
 
     const overRange = (index: number) => index >= this.count || index < 0
@@ -51,6 +44,9 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
       if (minPrev)
         minPrev.next = maxNode
 
+      if (maxNext)
+        maxNext.prev = minNode
+
       maxNode.prev = minPrev
       maxNode.next = minNode
       minNode.prev = maxNode
@@ -67,10 +63,16 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     if (minPrev) minPrev.next = maxNode
     maxNode.prev = minPrev
     maxNode.next = minNext
+    if (minNext)
+      minNext.prev = maxNode
+
+    if (maxNext)
+      maxNext.prev = minNode
 
     maxPrev.next = minNode
     minNode.next = maxNext
     minNode.prev = maxPrev
+    return true
   }
 
   /**
@@ -78,14 +80,6 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
    */
   public getTail() {
     return this.tail
-  }
-
-  public init() {
-    this.clear()
-  }
-
-  public push(val: T) {
-    this.insert(this.count, val)
   }
 
   /**
@@ -111,13 +105,9 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     }
     else if (index === this.count) {
       current = this.tail!
-
-      // hack: jest hack
-      if (current) {
-        current.next = node
-        node.prev = current
-        this.tail = node
-      }
+      current.next = node
+      node.prev = current
+      this.tail = node
     }
     else {
       const prev = this.getNodeAt(index - 1) as DoublyLinkNode<T>

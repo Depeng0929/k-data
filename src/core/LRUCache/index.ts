@@ -42,7 +42,11 @@ class LRUCache<T = unknown> {
    * @param key {unknow}
    */
   public get(key: unknown) {
-
+    const node = this.hash.get(key)
+    if (node) {
+      this.moveHead(node)
+      return node.val.LRUValue
+    }
   }
 
   /**
@@ -58,6 +62,9 @@ class LRUCache<T = unknown> {
       this.moveHead(LRUNode)
     }
     else {
+      if (this.count === this.capacity)
+        this.linkList.removeAt(0)
+
       LRUNode = new DoublyLinkNode(LRUNodeValue)
       this.hash.set(key, LRUNode)
       this.moveHead(LRUNode)
@@ -68,7 +75,20 @@ class LRUCache<T = unknown> {
   /**
    * 删除
    */
-  public remove(key) { }
+  public remove(key: unknown) {
+    const node = this.hash.get(key)
+    if (node) {
+      this.linkList.remove(node.val)
+      this.count--
+    }
+  }
+
+  /**
+   * 返回一个数组
+   */
+  public list() {
+    return this.linkList.list().map(item => item.LRUValue)
+  }
 
   private moveHead(node: DoublyLinkNode<LRUCacheNode<T>>) {
     const index = this.linkList.indexOf(node.val)

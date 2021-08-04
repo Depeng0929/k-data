@@ -10,7 +10,7 @@ describe('DoublyLinkList', () => {
     list.clear()
   })
 
-  it('init', () => {
+  it('init tail', () => {
     expect(list.getTail()).toBe(4)
   })
   it('list', () => {
