@@ -1,32 +1,78 @@
-import DoublyList from '../LinkList/DoublyLinkList'
-import DoublyNode from '../LinkList/DoublyNode'
+import { DoublyLinkList, DoublyLinkNode } from '../LinkList/index'
+
+export type LRUCacheNode<T = unknown> = {
+  LRUKey: unknown
+  LRUValue: T
+}
+
+const compareFn = (a: LRUCacheNode, b: LRUCacheNode) => {
+  if (a.LRUKey === b.LRUKey) return 0
+
+  return (a.LRUKey as number) > (b.LRUKey as number) ? 1 : -1
+}
 
 class LRUCache<T = unknown> {
-  public hash = new Map()
-  private linkList = new DoublyList<T>()
   private count = 0
+  private hash = new Map<any, DoublyLinkNode<LRUCacheNode<T>>>()
+  private linkList = new DoublyLinkList<LRUCacheNode<T>>({
+    compareFn,
+  })
 
   constructor(
     public capacity: number = 5,
   ) {
   }
 
+  /**
+   * 当前LRU元素数量
+   */
+  get size() {
+    return this.count
+  }
+
+  /**
+   * 是否为空
+   */
+  get isEmpty() {
+    return this.count === 0
+  }
+
+  /**
+   * 获取元素
+   * @param key {unknow}
+   */
   public get(key: unknown) {
 
   }
 
-  public put(key: unknown, value: unknown) {
-    const node = this.hash.get(key)
-    if (node) {
-      node.value = value
+  /**
+   * 添加或修改
+   * @param key {unknow}
+   * @param val {T}
+   */
+  public put(key: unknown, val: T) {
+    const LRUNodeValue: LRUCacheNode<T> = { LRUKey: key, LRUValue: val }
+    let LRUNode = this.hash.get(key)
+    if (LRUNode) {
+      LRUNode.val.LRUValue = val
+      this.moveHead(LRUNode)
     }
-    else {}
+    else {
+      LRUNode = new DoublyLinkNode(LRUNodeValue)
+      this.hash.set(key, LRUNode)
+      this.moveHead(LRUNode)
+      this.count++
+    }
   }
 
-  public remove(key: unknown) { }
+  /**
+   * 删除
+   */
+  public remove(key) { }
 
-  private moveToHead(node: DoublyNode<T>) {
-
+  private moveHead(node: DoublyLinkNode<LRUCacheNode<T>>) {
+    const index = this.linkList.indexOf(node.val)
+    this.linkList.swap(index, 0)
   }
 }
 

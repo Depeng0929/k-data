@@ -1,4 +1,4 @@
-import { deepClone, isPlainObject, defaultCompareFn } from '../../src/utils/index'
+import { deepClone, isPlainObject, defaultCompareFn, defaultSwap } from '../../src/utils/index'
 
 describe('utils isPlainObject', () => {
   expect(isPlainObject({})).toBeTruthy()
@@ -53,5 +53,13 @@ describe('utils defaultCompareFn', () => {
     expect(defaultCompareFn(1, 2)).toBe(-1)
     expect(defaultCompareFn(2, 1)).toBe(1)
     expect(defaultCompareFn(1, 1)).toBe(0)
+  })
+})
+
+describe('utils defaultSwap', () => {
+  const arr = [1, 2]
+  defaultSwap(arr, 0, 1)
+  it('params normal', () => {
+    expect(arr).toEqual([2, 1])
   })
 })

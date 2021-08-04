@@ -1,15 +1,18 @@
 import { DoublyLinkList } from '../../../src'
 
 describe('DoublyLinkList', () => {
-  let list = new DoublyLinkList([4, 2, 1, 3])
+  let list = new DoublyLinkList({ items: [4, 2, 1, 3] })
 
   beforeEach(() => {
-    list = new DoublyLinkList([4, 2, 1, 3])
+    list = new DoublyLinkList({ items: [4, 2, 1, 3] })
   })
   afterEach(() => {
     list.clear()
   })
 
+  it('init', () => {
+    expect(list.getTail()).toBe(4)
+  })
   it('list', () => {
     expect(list.list()).toEqual([4, 2, 1, 3])
   })

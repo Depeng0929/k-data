@@ -1,4 +1,4 @@
-import { ICompareFn } from '../../types'
+import { ILinkListOptions } from '../../types'
 import LinkList from './LinkList'
 import DoublyLinkNode from './DoublyLinkNode'
 
@@ -6,10 +6,11 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
   protected tail: DoublyLinkNode<T> | undefined
   declare protected head: DoublyLinkNode<T> | undefined
   constructor(
-    items?: T[],
-    compareFn?: ICompareFn,
+    options?: ILinkListOptions<T>,
   ) {
-    super(items, compareFn)
+    super(options)
+
+    this.init()
   }
 
   /**
@@ -21,10 +22,70 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
   }
 
   /**
+   * 交换双向链表中两个元素
+   * @param a {number} 索引
+   * @param b {number} 索引
+   */
+  public swap(a: number, b: number) {
+    if (a === b)
+      return false
+
+    const overRange = (index: number) => index >= this.count || index < 0
+    if (overRange(a) || overRange(b)) return false
+
+    const max = Math.max(a, b)
+    const min = Math.min(a, b)
+
+    const maxNode = this.getNodeAt(max) as DoublyLinkNode<T>
+    const minNode = this.getNodeAt(min) as DoublyLinkNode<T>
+
+    if (min === 0)
+      this.head = maxNode
+
+    if (max === this.count - 1)
+      this.tail = minNode
+
+    if (max - min === 1) {
+      const minPrev = minNode.prev
+      const maxNext = maxNode.next
+      if (minPrev)
+        minPrev.next = maxNode
+
+      maxNode.prev = minPrev
+      maxNode.next = minNode
+      minNode.prev = maxNode
+      minNode.next = maxNext
+
+      return true
+    }
+
+    const minPrev = minNode.prev
+    const minNext = minNode.next
+    const maxPrev = maxNode.prev!
+    const maxNext = maxNode.next
+
+    if (minPrev) minPrev.next = maxNode
+    maxNode.prev = minPrev
+    maxNode.next = minNext
+
+    maxPrev.next = minNode
+    minNode.next = maxNext
+    minNode.prev = maxPrev
+  }
+
+  /**
    * 获取双向链表尾部
    */
   public getTail() {
     return this.tail
+  }
+
+  public init() {
+    this.clear()
+  }
+
+  public push(val: T) {
+    this.insert(this.count, val)
   }
 
   /**
@@ -50,6 +111,7 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     }
     else if (index === this.count) {
       current = this.tail!
+
       // hack: jest hack
       if (current) {
         current.next = node
@@ -98,6 +160,21 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     }
     this.count--
     return current.val
+  }
+
+  /**
+   * 倒序输出
+   */
+  public listReverse() {
+    const result: T[] = []
+    let current = this.tail
+
+    while (current) {
+      result.push(current.val)
+      current = current.prev
+    }
+
+    return result
   }
 }
 

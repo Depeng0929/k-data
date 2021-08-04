@@ -7,3 +7,8 @@ export enum Compare {
 }
 
 export type ICompareFn = typeof defaultCompareFn
+
+export interface ILinkListOptions<T = unknown> {
+  items?: T[]
+  compareFn?: ICompareFn
+}

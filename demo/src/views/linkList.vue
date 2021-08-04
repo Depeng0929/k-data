@@ -10,9 +10,11 @@ import { DoublyLinkList } from '../../../src/index'
 export default {
   name: 'LinkList',
   setup() {
-    const list = new DoublyLinkList([4, 2, 1, 3])
+    const list = new DoublyLinkList({ items: [4, 2, 1, 3] })
     list.push(5)
-    console.log(list)
+
+    debugger
+    console.log(list.list())
     return {
 
     }

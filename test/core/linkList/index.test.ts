@@ -1,10 +1,10 @@
 import { LinkList } from '../../../src'
 
 describe('LinkList', () => {
-  let list = new LinkList([4, 2, 1, 3])
+  let list = new LinkList({ items: [4, 2, 1, 3] })
 
   beforeEach(() => {
-    list = new LinkList([4, 2, 1, 3])
+    list = new LinkList({ items: [4, 2, 1, 3] })
   })
   afterEach(() => {
     list.clear()

@@ -1,14 +1,27 @@
 import { defaultCompareFn } from '../../utils'
-import { ICompareFn } from '../../types'
+import { ICompareFn, ILinkListOptions } from '../../types'
 import LinkNode from './LinkNode'
+
+type IOptions<T = unknown> = Required <ILinkListOptions<T>>
+
 class LinkList<T = unknown> {
   protected head: LinkNode<T> | undefined = undefined
   protected count = 0
+  protected items: T[]
+  protected compareFn: ICompareFn
 
   constructor(
-    private items: T[] = [],
-    protected compareFn: ICompareFn = defaultCompareFn,
+    options?: ILinkListOptions<T>,
   ) {
+    const defaultOptions: IOptions<T> = {
+      items: [],
+      compareFn: defaultCompareFn,
+    }
+
+    const { items, compareFn } = Object.assign(defaultOptions, options || {})
+    this.items = items
+    this.compareFn = compareFn
+
     this.init()
   }
 
