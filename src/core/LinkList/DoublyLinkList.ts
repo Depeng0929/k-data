@@ -23,7 +23,7 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
    * @param b {number} 索引
    */
   public swap(a: number, b: number) {
-    if (a === b)
+    if (a === b || this.size < 2)
       return false
 
     const overRange = (index: number) => index >= this.count || index < 0
@@ -47,6 +47,9 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
       if (minPrev)
         minPrev.next = maxNode
 
+      if (maxNext)
+        maxNext.prev = minNode
+
       maxNode.prev = minPrev
       maxNode.next = minNode
       minNode.prev = maxNode
@@ -63,6 +66,11 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     if (minPrev) minPrev.next = maxNode
     maxNode.prev = minPrev
     maxNode.next = minNext
+    if (minNext)
+      minNext.prev = maxNode
+
+    if (maxNext)
+      maxNext.prev = minNode
 
     maxPrev.next = minNode
     minNode.next = maxNext

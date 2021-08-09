@@ -56,8 +56,19 @@ yarn add @depeng9527/k-data
 | getNodeAt | 方法 | 返回指定索引处node节点    | INode \| null |
 | removeAt  | 方法 | 移除指定索引处节点        | T \| null     |
 | indexOf   | 方法 | 返回指定索引处节点        | number \| -1  |
-| sort      | 方法 | 链表排序（归并排序）                  | Void          |
+|           |      |                           |               |
 | remove    | 方法 | 删除指定val的节点(第一个) | T \|null      |
+
+
+
+## DoublyLinkList
+
+同LinkList，新增如下
+
+| name    | type | description            | return        |
+| ------- | ---- | ---------------------- | ------------- |
+| swap    | 方法 | 交换双向链表中两个严肃 | number        |
+| getTail | 方法 | 获取尾节点             | DoublyNode<T> |
 
 
 
