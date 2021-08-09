@@ -1,17 +1,9 @@
-import { ILinkListOptions } from '../../types'
 import LinkList from './LinkList'
 import DoublyLinkNode from './DoublyLinkNode'
 
 class DoublyLinkList<T = unknown> extends LinkList<T> {
   protected tail: DoublyLinkNode<T> | undefined
   declare protected head: DoublyLinkNode<T> | undefined
-  constructor(
-    options?: ILinkListOptions<T>,
-  ) {
-    super(options)
-
-    this.init()
-  }
 
   /**
    * 清空双向链表
@@ -71,6 +63,7 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     maxPrev.next = minNode
     minNode.next = maxNext
     minNode.prev = maxPrev
+    return true
   }
 
   /**
@@ -78,10 +71,6 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
    */
   public getTail() {
     return this.tail
-  }
-
-  public init() {
-    this.clear()
   }
 
   public push(val: T) {
@@ -111,13 +100,9 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     }
     else if (index === this.count) {
       current = this.tail!
-
-      // hack: jest hack
-      if (current) {
-        current.next = node
-        node.prev = current
-        this.tail = node
-      }
+      current.next = node
+      node.prev = current
+      this.tail = node
     }
     else {
       const prev = this.getNodeAt(index - 1) as DoublyLinkNode<T>
