@@ -26,6 +26,11 @@
           graph
         </router-link>
       </li>
+      <li>
+        <router-link :to="{ path: '/lru' }">
+          lru
+        </router-link>
+      </li>
     </ul>
 
     <router-view></router-view>

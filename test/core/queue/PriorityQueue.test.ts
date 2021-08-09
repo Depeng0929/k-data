@@ -1,4 +1,4 @@
-import { PriorityQueue, Queue } from '../../../src'
+import { PriorityQueue } from '../../../src'
 
 describe('PriorityQueue', () => {
   let s = new PriorityQueue()

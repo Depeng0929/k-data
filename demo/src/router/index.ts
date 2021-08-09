@@ -22,6 +22,10 @@ const routes: RouteRecordRaw[] = [
     path: '/priority',
     component: () => import('../views/priorityQueue.vue'),
   },
+  {
+    path: '/lru',
+    component: () => import('../views/lru.vue'),
+  },
 ]
 
 const router = createRouter({

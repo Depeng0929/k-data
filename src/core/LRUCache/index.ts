@@ -42,7 +42,11 @@ class LRUCache<T = unknown> {
    * @param key {unknow}
    */
   public get(key: unknown) {
+    const node = this.hash.get(key)
 
+    if (node)
+      this.moveHead(node)
+    return node?.val.LRUValue
   }
 
   /**
@@ -52,23 +56,47 @@ class LRUCache<T = unknown> {
    */
   public put(key: unknown, val: T) {
     const LRUNodeValue: LRUCacheNode<T> = { LRUKey: key, LRUValue: val }
-    let LRUNode = this.hash.get(key)
+    const LRUNode = this.hash.get(key)
     if (LRUNode) {
       LRUNode.val.LRUValue = val
       this.moveHead(LRUNode)
     }
     else {
-      LRUNode = new DoublyLinkNode(LRUNodeValue)
+      if (this.count === this.capacity) {
+        const LRUNode = this.linkList.removeAt(0)!
+        this.hash.delete(LRUNode.LRUKey)
+        this.count--
+      }
+
+      this.linkList.insert(0, LRUNodeValue)
+      const LRUNode = this.linkList.getHead()!
       this.hash.set(key, LRUNode)
-      this.moveHead(LRUNode)
       this.count++
     }
+  }
+
+  public clear() {
+    this.count = 0
+    this.hash = new Map<any, DoublyLinkNode<LRUCacheNode<T>>>()
+    this.linkList.clear()
+  }
+
+  public getHead() {
+    return this.linkList.getHead()?.val.LRUValue
   }
 
   /**
    * 删除
    */
-  public remove(key) { }
+  public remove(key: unknown) {
+    const node = this.hash.get(key)
+    if (node) {
+      this.linkList.remove(node.val)
+      this.hash.delete(key)
+      this.count--
+      return node.val.LRUValue
+    }
+  }
 
   private moveHead(node: DoublyLinkNode<LRUCacheNode<T>>) {
     const index = this.linkList.indexOf(node.val)

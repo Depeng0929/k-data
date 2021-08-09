@@ -9,6 +9,7 @@
     "no-restricted-syntax": "off",
     "no-unmodified-loop-condition": "off",
     "eslint-comments/no-unlimited-disable": "off",
-    "node/no-callback-literal": "off"
+    "node/no-callback-literal": "off",
+    "no-console": "off"
   }
 }

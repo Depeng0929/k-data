@@ -5,6 +5,7 @@ import PriorityQueue from './core/Queue/PriorityQueue'
 import TreeNode from './core/Tree/TreeNode'
 import Tree from './core/Tree/index'
 import Graph from './core/Graph'
+import LRUCache from './core/LRUCache'
 
 export {
   Stack,
@@ -15,4 +16,5 @@ export {
   Tree,
   Graph,
   PriorityQueue,
+  LRUCache,
 }

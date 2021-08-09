@@ -13,6 +13,10 @@ class DoublyLinkList<T = unknown> extends LinkList<T> {
     this.tail = undefined
   }
 
+  public getHead() {
+    return super.getHead() as DoublyLinkNode<T>
+  }
+
   /**
    * 交换双向链表中两个元素
    * @param a {number} 索引
