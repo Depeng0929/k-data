@@ -62,7 +62,6 @@ class LRUCache<T = unknown> {
       this.moveHead(LRUNode)
     }
     else {
-<<<<<<< HEAD
       if (this.count === this.capacity) {
         const LRUNode = this.linkList.removeAt(0)!
         this.hash.delete(LRUNode.LRUKey)
@@ -71,12 +70,6 @@ class LRUCache<T = unknown> {
 
       this.linkList.insert(0, LRUNodeValue)
       const LRUNode = this.linkList.getHead()!
-=======
-      if (this.count === this.capacity)
-        this.linkList.removeAt(0)
-
-      LRUNode = new DoublyLinkNode(LRUNodeValue)
->>>>>>> d157f7af4f743df266b5907da26a76ee74c51766
       this.hash.set(key, LRUNode)
       this.count++
     }

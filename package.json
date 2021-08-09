@@ -1,5 +1,5 @@
 {
-  "name": "k-data",
+  "name": "@depeng9527/k-data",
   "version": "0.1.0",
   "engines": {
     "node": ">=14.0.0"
