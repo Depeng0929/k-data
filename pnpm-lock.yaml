@@ -10,6 +10,7 @@ importers:
       bumpp: ^6.0.6
       eslint: ^7.31.0
       eslint-plugin-jest: ^24.4.0
+      fs-extra: ^10.0.0
       jest: ^27.0.6
       rimraf: ^3.0.2
       ts-jest: ^27.0.4
@@ -23,6 +24,7 @@ importers:
       bumpp: registry.nlark.com/bumpp/6.0.6
       eslint: registry.nlark.com/eslint/7.31.0
       eslint-plugin-jest: registry.nlark.com/eslint-plugin-jest/24.4.0_fc5326c9e782cff3be563ae5197052dc
+      fs-extra: 10.0.0
       jest: registry.nlark.com/jest/27.0.6
       rimraf: 3.0.2
       ts-jest: registry.nlark.com/ts-jest/27.0.4_52cc4273aa16028085013af47e479e10
@@ -760,6 +762,15 @@ packages:
       mime-types: registry.nlark.com/mime-types/2.1.31
     dev: true
 
+  /fs-extra/10.0.0:
+    resolution: {integrity: sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.8
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
   /fs.realpath/1.0.0:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=, tarball: https://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz}
     dev: true
@@ -808,6 +819,10 @@ packages:
 
   /graceful-fs/4.2.6:
     resolution: {integrity: sha1-/wQLKwhTsjw9MQJ1I3BvGIXXa+4=, tarball: https://registry.npm.taobao.org/graceful-fs/download/graceful-fs-4.2.6.tgz}
+    dev: true
+
+  /graceful-fs/4.2.8:
+    resolution: {integrity: sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==}
     dev: true
 
   /has-bigints/1.0.1:
@@ -1077,11 +1092,11 @@ packages:
     dev: true
 
   /jsonfile/6.1.0:
-    resolution: {integrity: sha1-vFWyY0eTxnnsZAMJTrE2mKbsCq4=, tarball: https://registry.npm.taobao.org/jsonfile/download/jsonfile-6.1.0.tgz}
+    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.6
+      graceful-fs: 4.2.8
     dev: true
 
   /kleur/3.0.3:
@@ -2042,7 +2057,7 @@ packages:
     dev: true
 
   /universalify/2.0.0:
-    resolution: {integrity: sha1-daSYTv7cSwiXXFrrc/Uw0C3yVxc=, tarball: https://registry.npm.taobao.org/universalify/download/universalify-2.0.0.tgz}
+    resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
     dev: true
 

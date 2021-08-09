@@ -1,6 +1,6 @@
 {
   "name": "k-data",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -32,7 +32,9 @@
     "build": "rimraf dist && tsup src/index.ts --format cjs,esm --dts",
     "dev": "pnpm -C demo run dev",
     "lint": "eslint '**/*.{js,ts,vue,json}' --fix",
-    "test": "jest"
+    "test": "jest",
+    "release": "zx ./scripts/release.mjs",
+    "publish": "zx ./scripts/publish.mjs"
   },
   "bugs": {
     "url": "https://github.com/Depeng0929/k-data/issues"
@@ -45,6 +47,7 @@
     "bumpp": "^6.0.6",
     "eslint": "^7.31.0",
     "eslint-plugin-jest": "^24.4.0",
+    "fs-extra": "^10.0.0",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.4",
