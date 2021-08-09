@@ -92,7 +92,7 @@ describe('DoublyLinkList', () => {
 
   it('swap normal', () => {
     expect(list.swap(1, 2)).toBeTruthy()
-    expect(list.list()).toEqual([3, 2, 1, 4])
+    expect(list.list()).toEqual([4, 1, 2, 3])
   })
 
   it('swap out', () => {
