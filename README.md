@@ -1,3 +1,4 @@
+[![npm version](https://badge.fury.io/js/%40depeng9527%2Fk-data.svg)](https://badge.fury.io/js/%40depeng9527%2Fk-data)
 # k-data
 JS常用数据结构实现。
 
