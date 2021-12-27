@@ -1,12 +1,12 @@
-import AbstractLeaf from './AbstractLeaf'
+class TreeNode<T = unknown> {
+  public val: T
+  public left: TreeNode<T> | null = null
+  public right: TreeNode<T> | null = null
 
-class TreeNode<T = unknown> extends AbstractLeaf<T> {
-  public excute(callback: (p: AbstractLeaf<T>) => any) {
-    callback(this)
-  }
-
-  public isLeaf(): boolean {
-    return true
+  constructor(
+    data: T,
+  ) {
+    this.val = data
   }
 }
 

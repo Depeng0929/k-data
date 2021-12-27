@@ -73,17 +73,16 @@ yarn add @depeng9527/k-data
 
 
 
-## Tree
-注意此tree不是传统意义上的数据结构，而是前端业务常用的value, children树形结构。
-
-| name               | type | description          | return  |
-| ------------------ | ---- | -------------------- | ------- |
-| level              | 属性 | 当前树的深度         | number  |
-| add                | 方法 | 添加节点             | Tree<T> |
-| remove             | 方法 | 删除当前节点         | void    |
-| isLeaf             | 方法 | 是否是treeNode类     | boolean |
-| excute             | 方法 | 深度优先执行callback | void    |
-| breadthFirstSearch | 方法 | 广度优先执行callback |         |
+## BSTree
+| name              | type | description        | return |      |      |
+| ----------------- | ---- | ------------------ | ------ | ---- | ---- |
+| max               | 属性 | BSTree最大节点的值 | T      |      |      |
+| min               | 属性 | BSTree最小节点的值 | T      |      |      |
+| insert            | 方法 | 添加节点           | void   |      |      |
+| remove            | 方法 | 删除节点           | void   |      |      |
+| preOrderTraverse  | 方法 | 先序遍历           | void   |      |      |
+| inOrderTraverse   | 方法 | 中序遍历           | void   |      |      |
+| postOrderTraverse | 方法 | 后序遍历           | void   |      |      |
 
 
 

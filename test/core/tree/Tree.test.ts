@@ -1,42 +1,40 @@
-import { Tree, TreeNode } from '../../../src'
+import { BSTree } from '../../../src'
 
-describe('TreeNode', () => {
-  const root = new Tree('tree1')
-  const tree2 = new Tree('tree2')
-  const tree3 = new Tree('tree3')
-  const node1 = new TreeNode('node1')
-  const node2 = new TreeNode('node2')
-  const node3 = new TreeNode('node3')
+describe('BSTree is ok', () => {
+  const bstree = new BSTree<number>()
+  bstree.insert(50)
+  bstree.insert(30)
+  bstree.insert(70)
+  bstree.insert(10)
+  bstree.insert(40)
+  bstree.insert(90)
+  bstree.insert(80)
 
-  root.add(tree2).add(tree3)
-  tree2.add(node1).add(node2)
-  tree3.add(node3)
+  it('preOrder ok', () => {
+    const result: number[] = []
+    bstree.preOrderTraverse(val => result.push(val))
 
-  it('init', () => {
-    expect(root.level).toBe(0)
-    expect(node3.level).toBe(2)
-    expect(tree2.level).toBe(1)
+    expect(result).toEqual([50, 30, 10, 40, 70, 90, 80])
   })
 
-  it('excute', () => {
-    const result: string[] = []
-    root.excute((item) => {
-      result.push(item.val)
-    })
-    expect(result).toEqual(['tree1', 'tree2', 'node1', 'node2', 'tree3', 'node3'])
+  it('inOrder ok', () => {
+    const result: number[] = []
+    bstree.inOrderTraverse(val => result.push(val))
+
+    expect(result).toEqual([10, 30, 40, 50, 70, 80, 90])
   })
 
-  it('breadthFirstSearch', () => {
-    const result: string[] = []
-    root.breadthFirstSearch((item) => {
-      result.push(item.val)
-    })
-    expect(result).toEqual(['tree1', 'tree2', 'tree3', 'node1', 'node2', 'node3'])
+  it('postOrder ok', () => {
+    const result: number[] = []
+    bstree.postOrderTraverse(val => result.push(val))
+
+    expect(result).toEqual([10, 40, 30, 80, 90, 70, 50])
   })
 
-  it('remove', () => {
-    tree2.remove()
-    tree3.remove()
-    expect(root.children.length).toBe(0)
+  it('remove ok', () => {
+    bstree.remove(50)
+    const result: number[] = []
+    bstree.inOrderTraverse(val => result.push(val))
+    expect(result).toEqual([10, 30, 40, 70, 80, 90])
   })
 })
