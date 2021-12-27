@@ -54,5 +54,8 @@
     "tsup": "^4.12.5",
     "typescript": "^4.3.5",
     "zx": "^2.0.0"
+  },
+  "dependencies": {
+    "@depeng9527/tools": "^1.1.1"
   }
 }
