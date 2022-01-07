@@ -1,6 +1,6 @@
 import Stack from './core/Stack'
 import Queue from './core/Queue'
-import { LinkList, DoublyLinkList } from './core/LinkList/index'
+import { LinkList, DoublyLinkList, LinkNode, DoublyLinkNode } from './core/LinkList/index'
 import PriorityQueue from './core/Queue/PriorityQueue'
 import TreeNode from './core/Tree/TreeNode'
 import { BSTree } from './core/Tree/index'
@@ -11,7 +11,9 @@ export {
   Stack,
   Queue,
   LinkList,
+  LinkNode,
   DoublyLinkList,
+  DoublyLinkNode,
   TreeNode,
   BSTree,
   Graph,
