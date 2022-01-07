@@ -1,4 +1,3 @@
-import { deepClone } from '@depeng9527/tools'
 import { Compare } from '../types/index.d'
 
 export function isPlainObject(val: unknown) {
@@ -20,4 +19,4 @@ export function defaultSwap(arr: any[], a: number, b: number) {
 
 export {
   deepClone,
-}
+} from '@depeng9527/tools'
