@@ -1,9 +1,9 @@
-import { defaultCompareFn } from '../utils'
+import type { defaultCompareFn } from '../utils'
 
 export enum Compare {
   LESS = -1,
   EQUAL,
-  MORE
+  MORE,
 }
 
 export type ICompareFn = typeof defaultCompareFn

@@ -1,3 +1,4 @@
+import { equal } from '@depeng9527/tools'
 import { deepClone } from '../../utils/index'
 
 class Stack<T = unknown> {
@@ -58,6 +59,28 @@ class Stack<T = unknown> {
    */
   public clear() {
     return this.items = []
+  }
+
+  /**
+   * 转换成数组
+   */
+  public toArray(): T[] {
+    return deepClone(this.items)
+  }
+
+  /**
+   * 判断两个栈是否相等
+   */
+  public equals(s: Stack<T>) {
+    if (this.size !== s.size) return false
+    const s1 = this.toArray()
+    const s2 = s.toArray()
+
+    return equal(s1, s2)
+  }
+
+  public forEach(fn: (el: T) => void) {
+    this.items.forEach(fn)
   }
 }
 
