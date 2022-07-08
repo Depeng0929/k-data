@@ -95,3 +95,5 @@ yarn add @depeng9527/k-data
 | breadthFirstSearch | 方法 | 广度遍历         | T      |
 | depthFirstSearch   | 方法 | 深度遍历         | T      |
 |                    |      |                  |        |
+
+## Refactor
