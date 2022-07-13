@@ -1,61 +1,69 @@
 {
   "name": "@depeng9527/k-data",
   "version": "1.1.1",
-  "engines": {
-    "node": ">=14.0.0"
+  "packageManager": "pnpm@7.1.7",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/Depeng0929/k-data#readme",
+  "bugs": {
+    "url": "https://github.com/Depeng0929/k-data/issues"
   },
-  "description": "Personal Data Structure",
   "license": "MIT",
+  "author": "Depeng kong <15365182986@163.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Depeng0929/k-data.git"
   },
-  "author": "Depeng0929 <15365182986@163.com>",
-  "files": [
-    "dist",
-    "index.d.ts"
-  ],
+  "funding": "https://github.com/sponsors/Depeng0929",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "require": "./dist/index.cjs",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
-    "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js"
+      "types": "./dist/index.d.ts"
     }
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
   "scripts": {
-    "build": "rimraf dist && tsup src/index.ts --format cjs,esm --dts",
-    "dev": "pnpm -C demo run dev",
-    "lint": "eslint '**/*.{js,ts,vue,json}' --fix",
-    "test": "jest",
+    "build": "rimraf dist && unbuild",
+    "dev": "unbuild --stub",
+    "lint": "eslint .",
+    "start": "esno src/index.ts",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
     "release": "zx ./scripts/release.mjs",
     "ci:publish": "npm run build && zx ./scripts/publish.mjs"
   },
-  "bugs": {
-    "url": "https://github.com/Depeng0929/k-data/issues"
-  },
-  "homepage": "https://github.com/Depeng0929/k-data#readme",
-  "devDependencies": {
-    "@depeng9527/eslint-config": "^1.4.3",
-    "@types/jest": "^28.1.4",
-    "@typescript-eslint/eslint-plugin": "^5.30.5",
-    "bumpp": "^8.2.1",
-    "eslint": "^8.19.0",
-    "eslint-plugin-jest": "^26.5.3",
-    "fs-extra": "^10.1.0",
-    "jest": "^28.1.2",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^28.0.5",
-    "tsup": "^6.1.3",
-    "typescript": "^4.7.4",
-    "zx": "^7.0.7"
-  },
   "dependencies": {
     "@depeng9527/tools": "^2.2.8"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.18.8",
+    "@depeng9527/eslint-config": "^1.4.3",
+    "@types/node": "^18.0.3",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.19.0",
+    "esno": "^0.16.3",
+    "fs-extra": "^10.1.0",
+    "pnpm": "^7.5.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.7.4",
+    "vite": "^2.9.14",
+    "vitest": "^0.17.1",
+    "zx": "^7.0.7"
   }
 }

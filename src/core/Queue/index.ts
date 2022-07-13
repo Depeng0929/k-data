@@ -1,59 +1,70 @@
-import { deepClone } from '../../utils/index'
+import type { DefaultOptions, ICompareFn } from '../../types'
+import { defaultCompareFn } from '../../utils'
+import LinkedList from '../LinkedList'
 
-class Queue<T = unknown> {
-  private items: T[] = []
+export class Queue<T = unknown> {
+  private linkedList: LinkedList<T> | undefined
+
   constructor(
-    items: T[] = [],
+    options?: DefaultOptions<T>,
   ) {
-    this.items = deepClone(items)
+    const defaultOptions: DefaultOptions<T> = {
+      items: [],
+      compareFn: defaultCompareFn,
+    }
+    const o = Object.assign(defaultOptions, options || {})
+    this.linkedList = new LinkedList<T>(o)
   }
 
-  /**
-   * 队列是否为空
-   * @return {boolean}
-   */
-  get isEmpty() {
-    return this.items.length === 0
-  }
-
-  /**
-   * 返回队列元素的数目
-   * @return {number}
-   */
   get size() {
-    return this.items.length
+    return this.linkedList?.size || 0
+  }
+
+  get isEmpty() {
+    if (!this.linkedList) return true
+    return this.linkedList.isEmpty
+  }
+
+  add(item: T) {
+    return this.linkedList?.add(item)
+  }
+
+  clear() {
+    return this.linkedList?.clear()
+  }
+
+  contains(item: T, equalsFunction?: ICompareFn) {
+    if (!this.linkedList) return false
+    return this.linkedList.contains(item, equalsFunction)
   }
 
   /**
-   * 队列底部入队
-   * @param val {T}
+   * 出列
    */
-  public enqueue(val: T) {
-    this.items.push(val)
+  dequeue() {
+    return this.linkedList?.removeAt(0)
   }
 
-  /**
-   *  队列顶部出队
-   *  @return {T | undefined}
-   */
-  public dequeue() {
-    return this.items.shift()
+  enqueue(item: T) {
+    return this.add(item)
   }
 
-  /**
-   * 返回队列顶部的元素
-   * @return {T | undefined}
-   */
-  public peek() {
-    return this.items[0]
+  forEach(callback: (item: T) => void) {
+    return this.linkedList?.forEach(callback)
   }
 
-  /**
-   * 清空队列
-   */
-  public clear() {
-    this.items = []
+  * [Symbol.iterator]() {
+    if (!this.linkedList) return
+    for (const item of this.linkedList!)
+      yield item
+  }
+
+  peek() {
+    return this.linkedList?.getHead()
+  }
+
+  toArray() {
+    if (!this.linkedList) return []
+    return this.linkedList.toArray()
   }
 }
-
-export default Queue

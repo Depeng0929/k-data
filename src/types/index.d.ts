@@ -6,9 +6,10 @@ export enum Compare {
   MORE,
 }
 
-export type ICompareFn = typeof defaultCompareFn
+export type ICompareFn<T = unknown> = typeof defaultCompareFn<T>
 
-export interface ILinkListOptions<T = unknown> {
+export interface DefaultOptions<T = unknown> {
   items?: T[]
   compareFn?: ICompareFn
 }
+type IOptions<T = unknown> = Required <DefaultOptions<T>>

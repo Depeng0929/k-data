@@ -1,17 +1,24 @@
-import { equal } from '@depeng9527/tools'
-import { deepClone } from '../../utils/index'
+import { deepClone, equal } from '@depeng9527/tools'
+import type { DefaultOptions, ICompareFn, IOptions } from '../../types'
+import { defaultCompareFn } from '../../utils'
 
 class Stack<T = unknown> {
   private items: T[] = []
+  protected compareFn: ICompareFn<T>
 
   constructor(
-    items: T[] = [],
+    options?: DefaultOptions<T>,
   ) {
-    if (Array.isArray(items))
-      this.items = deepClone(items)
+    const defaultOptions: IOptions<T> = {
+      items: [],
+      compareFn: defaultCompareFn,
+    }
+    const { items, compareFn } = Object.assign(defaultOptions, options || {})
+    if (!Array.isArray(items))
+      throw new Error('items must be Array')
 
-    else
-      throw new Error('传入的参数必须是数组')
+    this.items = deepClone(items)
+    this.compareFn = compareFn
   }
 
   /**
@@ -28,6 +35,39 @@ class Stack<T = unknown> {
    */
   get isEmpty() {
     return this.size === 0
+  }
+
+  /**
+   * 入栈
+   * @param val {T} 入栈的元素
+   */
+  public add(val: T) {
+    this.push(val)
+  }
+
+  /**
+   * 清空栈
+   */
+  public clear() {
+    return this.items = []
+  }
+
+  public contains(item: T, compareFunction?: ICompareFn) {
+    const comare = compareFunction || this.compareFn
+    return this.items.some(i => comare(i, item))
+  }
+
+  public forEach(callback: (item: T, index?: number) => void) {
+    this.items.forEach(callback)
+  }
+
+  * [Symbol.iterator]() {
+    let index = this.items.length - 1
+
+    while (index >= 0) {
+      yield this.items[index]
+      index--
+    }
   }
 
   /**
@@ -55,13 +95,6 @@ class Stack<T = unknown> {
   }
 
   /**
-   * 清空栈
-   */
-  public clear() {
-    return this.items = []
-  }
-
-  /**
    * 转换成数组
    */
   public toArray(): T[] {
@@ -77,10 +110,6 @@ class Stack<T = unknown> {
     const s2 = s.toArray()
 
     return equal(s1, s2)
-  }
-
-  public forEach(fn: (el: T) => void) {
-    this.items.forEach(fn)
   }
 }
 

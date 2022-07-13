@@ -1,11 +1,8 @@
-import { Compare } from '../types/index.d'
+import { equal } from '@depeng9527/tools'
+import type { Compare } from '../types'
 
-export function isPlainObject(val: unknown) {
-  return Object.prototype.toString.call(val) === '[object Object]'
-}
-
-export function defaultCompareFn(a: any, b: any): Compare {
-  if (a === b)
+export function defaultCompareFn<T = unknown>(a: T, b: T): Compare {
+  if (equal(a, b))
     return 0
 
   return a < b ? -1 : 1
@@ -16,7 +13,3 @@ export function defaultSwap(arr: any[], a: number, b: number) {
   arr[a] = arr[b]
   arr[b] = tmp
 }
-
-export {
-  deepClone,
-} from '@depeng9527/tools'

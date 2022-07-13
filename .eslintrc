@@ -1,15 +1,3 @@
 {
-  "env": {
-    "node": true,
-    "jest": true
-  },
-  "extends": "@depeng9527/eslint-config",
-  "plugins": ["jest"],
-  "rules": {
-    "no-restricted-syntax": "off",
-    "no-unmodified-loop-condition": "off",
-    "eslint-comments/no-unlimited-disable": "off",
-    "node/no-callback-literal": "off",
-    "no-console": "off"
-  }
+  "extends": "@depeng9527/eslint-config"
 }

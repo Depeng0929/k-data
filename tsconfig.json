@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["esnext"],
     "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
-  },
-  "exclude": ["node_modules", "test/**/*.test.ts"]
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
+  }
 }

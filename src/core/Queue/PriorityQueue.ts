@@ -1,11 +1,25 @@
+import { deepClone } from '@depeng9527/tools'
+import type { DefaultOptions, ICompareFn, IOptions } from '../../types'
 import { defaultCompareFn, defaultSwap } from '../../utils'
 
 class PriorityQueue<T = unknown> {
   private list: T[] = []
+  private compareFn: ICompareFn<T> = defaultCompareFn
 
   constructor(
-    private compareFn: typeof defaultCompareFn = defaultCompareFn,
+    options?: DefaultOptions<T>,
   ) {
+    const defaultOptions: IOptions<T> = {
+      items: [],
+      compareFn: defaultCompareFn,
+    }
+
+    const { items, compareFn } = Object.assign(defaultOptions, options || {})
+    if (!Array.isArray(items))
+      throw new Error('items must be Array')
+
+    this.list = deepClone(items)
+    this.compareFn = compareFn
   }
 
   /**
@@ -22,6 +36,21 @@ class PriorityQueue<T = unknown> {
    */
   get size() {
     return this.list.length
+  }
+
+  public add(value: T) {
+    this.enqueue(value)
+  }
+
+  /**
+   * 清空队列
+   */
+  public clear() {
+    this.list = []
+  }
+
+  public contains(value: T) {
+    return this.list.includes(value)
   }
 
   /**
@@ -55,11 +84,21 @@ class PriorityQueue<T = unknown> {
     return this.isEmpty ? undefined : this.list[0]
   }
 
-  /**
-   * 清空队列
-   */
-  public clear() {
-    this.list = []
+  public toArray() {
+    return deepClone(this.list)
+  }
+
+  public forEach(callback: (item: T) => void) {
+    this.list.forEach(callback)
+  }
+
+  * [Symbol.iterator]() {
+    let index = 0
+
+    while (index < this.list.length) {
+      yield this.list[index]
+      index++
+    }
   }
 
   /**
