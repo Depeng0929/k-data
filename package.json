@@ -14,7 +14,6 @@
     "type": "git",
     "url": "git+https://github.com/Depeng0929/k-data.git"
   },
-  "funding": "https://github.com/sponsors/Depeng0929",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
