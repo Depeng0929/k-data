@@ -79,6 +79,30 @@ describe('LinkList', () => {
     expect(list.getHead()).toBeUndefined()
   })
 
+  // [4, 2, 1, 3]
+  it('swap', () => {
+    list.swap(2, 1)
+    expect(list.toArray()).toEqual([4, 1, 2, 3])
+    expect(list.size).toBe(4)
+  })
+  it('swap head', () => {
+    list.swap(4, 2)
+    expect(list.toArray()).toEqual([2, 4, 1, 3])
+    expect(list.size).toBe(4)
+  })
+  it('swap end', () => {
+    list.swap(4, 3)
+    expect(list.toArray()).toMatchInlineSnapshot(`
+      [
+        4,
+        2,
+        1,
+        3,
+      ]
+    `)
+    expect(list.size).toBe(4)
+  })
+
   it('iterator', () => {
     const result = []
     for (const item of list)

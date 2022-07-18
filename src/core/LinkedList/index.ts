@@ -1,7 +1,7 @@
 import type { Nullable } from '@depeng9527/tools'
 import { deepClone } from '@depeng9527/tools'
-import { Compare } from '../../types/index.d'
 import type { DefaultOptions, ICompareFn, IOptions } from '../../types/index.d'
+import { Compare } from '../../types/index.d'
 import { defaultCompareFn } from '../../utils'
 import LinkedNode from './LinkedNode'
 
@@ -149,6 +149,34 @@ class LinkedList<T = unknown> {
       return this.removeAt(index)
 
     return undefined
+  }
+
+  public swap(sourceIndex: number, targetIndex: number) {
+    if (sourceIndex === targetIndex) return
+
+    const source = this.elementAt(sourceIndex)
+    const target = this.elementAt(targetIndex)
+
+    if (!source || !target) return
+
+    const sourcePrev = this.elementAt(sourceIndex - 1)
+    const targetPrev = this.elementAt(targetIndex - 1)
+
+    if (sourcePrev)
+      sourcePrev.next = target
+
+    else
+      this.head = target
+
+    if (targetPrev)
+      targetPrev.next = source
+
+    else
+      this.head = source
+
+    const temp = source.next
+    source.next = target.next
+    target.next = temp
   }
 
   /**
