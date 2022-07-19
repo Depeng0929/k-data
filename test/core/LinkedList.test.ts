@@ -14,17 +14,21 @@ describe('LinkList', () => {
   it('init normal', () => {
     expect(list.size).toBe(4)
     expect(list.getHead()).toBe(4)
+    expect(list.getTail()).toBe(3)
   })
 
   it('add', () => {
     list.add(5)
     expect(list.size).toBe(5)
+    expect(list.getHead()).toBe(4)
+    expect(list.getTail()).toBe(5)
   })
 
   it('clear', () => {
     list.clear()
     expect(list.size).toBe(0)
     expect(list.getHead()).toBeUndefined()
+    expect(list.getTail()).toBeUndefined()
   })
 
   it('contains', () => {
@@ -33,10 +37,10 @@ describe('LinkList', () => {
   })
 
   it('elementAtIndex', () => {
-    expect(list.elementAtIndex(0)).toBe(4)
-    expect(list.elementAtIndex(1)).toBe(2)
-    expect(list.elementAtIndex(2)).toBe(1)
-    expect(list.elementAtIndex(3)).toBe(3)
+    expect(list.elementAt(0)).toBe(4)
+    expect(list.elementAt(1)).toBe(2)
+    expect(list.elementAt(2)).toBe(1)
+    expect(list.elementAt(3)).toBe(3)
   })
 
   it('getHead', () => {
@@ -60,13 +64,31 @@ describe('LinkList', () => {
   it('remove', () => {
     list.remove(1)
     expect(list.size).toBe(3)
-    expect(list.elementAtIndex(2)).toBe(3)
+    expect(list.elementAt(2)).toBe(3)
   })
 
   it('removeAt', () => {
     list.removeAt(1)
     expect(list.size).toBe(3)
-    expect(list.elementAtIndex(1)).toBe(1)
+    expect(list.elementAt(1)).toBe(1)
+    expect(list.toArray()).toEqual([4, 1, 3])
+    expect(list.getTail()).toBe(3)
+    expect(list.getHead()).toBe(4)
+  })
+
+  it('removeAt start', () => {
+    list.removeAt(0)
+    expect(list.toArray()).toEqual([2, 1, 3])
+    expect(list.size).toBe(3)
+    expect(list.getTail()).toBe(3)
+    expect(list.getHead()).toBe(2)
+  })
+  it('removeAt end', () => {
+    list.removeAt(3)
+    expect(list.size).toBe(3)
+    expect(list.toArray()).toEqual([4, 2, 1])
+    expect(list.getHead()).toBe(4)
+    expect(list.getTail()).toBe(1)
   })
 
   it('toArray', () => {
@@ -77,6 +99,7 @@ describe('LinkList', () => {
     list.clear()
     expect(list.size).toBe(0)
     expect(list.getHead()).toBeUndefined()
+    expect(list.getTail()).toBeUndefined()
   })
 
   // [4, 2, 1, 3]
@@ -86,20 +109,23 @@ describe('LinkList', () => {
     expect(list.size).toBe(4)
   })
   it('swap head', () => {
-    list.swap(4, 2)
+    list.swap(0, 1)
     expect(list.toArray()).toEqual([2, 4, 1, 3])
     expect(list.size).toBe(4)
   })
   it('swap end', () => {
-    list.swap(4, 3)
-    expect(list.toArray()).toMatchInlineSnapshot(`
-      [
-        4,
-        2,
-        1,
-        3,
-      ]
-    `)
+    list.swap(0, 3)
+    expect(list.toArray()).toEqual([
+      3,
+      2,
+      1,
+      4,
+    ])
+    expect(list.size).toBe(4)
+  })
+  it('swap middle', () => {
+    list.swap(2, 3)
+    expect(list.toArray()).toEqual([4, 2, 3, 1])
     expect(list.size).toBe(4)
   })
 

@@ -4,14 +4,14 @@ import LinkedList from '../LinkedList'
 
 interface LRUOptions<T = unknown> {
   max?: number
-  compareFn: ICompareFn<T>
+  compareFn?: ICompareFn<T>
 }
 
-export class LRU<V = unknown, K = string> {
+export default class LRU<V = unknown, K = string | number> {
   private max = 1000
   private compareFn = defaultCompareFn
   private hashMap = new Map<K, V>()
-  private linkList = new LinkedList<V>({
+  private linkList = new LinkedList<K>({
     compareFn: this.compareFn,
   })
 
@@ -28,27 +28,62 @@ export class LRU<V = unknown, K = string> {
     return this.hashMap.size
   }
 
-  set(key: K, val: V) {
-    if (this.hashMap.has(key)) {
-      this.hashMap.delete(key)
-      this.linkList.remove(val)
-    }
-    this.hashMap.set(key, val)
+  add(key: K, val: V) {
+    return this.set(key, val)
   }
 
-  get() {}
+  set(key: K, val: V) {
+    if (this.hashMap.has(key))
+      return this.hashMap.set(key, val)
 
-  has() {}
+    if (this.size >= this.max)
+      this.pop()
 
-  clear() {}
+    this.hashMap.set(key, val)
+    this.linkList.add(key)
+  }
 
-  delete() {}
+  get(key: K) {
+    return this.hashMap.get(key)
+  }
 
-  forEach() {}
+  has(key: K) {
+    return this.hashMap.has(key)
+  }
 
-  pop() {}
+  clear() {
+    this.linkList.clear()
+    this.hashMap.clear()
+  }
 
-  peek() {}
+  delete(key: K) {
+    this.linkList.remove(key)
+    this.hashMap.delete(key)
+  }
 
-  contains() {}
+  /**
+   * 删除最老的一个元素
+   */
+  pop() {
+    const key = this.linkList.removeAt(0)
+    if (key)
+      return this.hashMap.delete(key)
+  }
+
+  /**
+   * 获取最新的一个元素
+   */
+  peek() {
+    const key = this.linkList.getTail()
+    if (key)
+      return this.hashMap.get(key)
+  }
+
+  contains(key: K) {
+    return this.hashMap.has(key)
+  }
+
+  toArray() {
+    return this.linkList.toArray().reverse()
+  }
 }

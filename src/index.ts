@@ -1,9 +1,10 @@
-import Stack from './core/Stack'
-import { Queue } from './core/Queue'
+import BSTree from './core/BSTree'
 import LinkedList from './core/LinkedList'
 import LinkedNode from './core/LinkedList/LinkedNode'
-import BSTree from './core/BSTree'
+import LRU from './core/LRU'
+import Queue from './core/Queue'
 import PriorityQueue from './core/Queue/PriorityQueue'
+import Stack from './core/Stack'
 
 export {
   PriorityQueue,
@@ -12,4 +13,5 @@ export {
   Queue,
   Stack,
   BSTree,
+  LRU,
 }

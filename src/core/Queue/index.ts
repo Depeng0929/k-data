@@ -2,7 +2,7 @@ import type { DefaultOptions, ICompareFn } from '../../types'
 import { defaultCompareFn } from '../../utils'
 import LinkedList from '../LinkedList'
 
-export class Queue<T = unknown> {
+export default class Queue<T = unknown> {
   private linkedList: LinkedList<T> | undefined
 
   constructor(

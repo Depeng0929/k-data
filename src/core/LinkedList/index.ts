@@ -7,6 +7,7 @@ import LinkedNode from './LinkedNode'
 
 class LinkedList<T = unknown> {
   protected head: Nullable<LinkedNode<T>>
+  protected tail: Nullable<LinkedNode<T>>
   protected count = 0
   protected items: T[]
   protected compareFn: ICompareFn<T>
@@ -52,6 +53,7 @@ class LinkedList<T = unknown> {
    */
   public clear() {
     this.head = undefined
+    this.tail = undefined
     this.count = 0
   }
 
@@ -79,7 +81,7 @@ class LinkedList<T = unknown> {
    * @param index {number} 索引
    * @returns {LinkedNode<T>}
    */
-  public elementAtIndex(index: number) {
+  public elementAt(index: number) {
     if (this.isEmpty || (index >= this.count || index < 0)) return undefined
 
     let current = this.head
@@ -95,6 +97,10 @@ class LinkedList<T = unknown> {
    */
   public getHead() {
     return this.head?.value
+  }
+
+  public getTail() {
+    return this.tail?.value
   }
 
   /**
@@ -154,13 +160,13 @@ class LinkedList<T = unknown> {
   public swap(sourceIndex: number, targetIndex: number) {
     if (sourceIndex === targetIndex) return
 
-    const source = this.elementAt(sourceIndex)
-    const target = this.elementAt(targetIndex)
+    const source = this.elementAtIndex(sourceIndex)
+    const target = this.elementAtIndex(targetIndex)
 
     if (!source || !target) return
 
-    const sourcePrev = this.elementAt(sourceIndex - 1)
-    const targetPrev = this.elementAt(targetIndex - 1)
+    const sourcePrev = this.elementAtIndex(sourceIndex - 1)
+    const targetPrev = this.elementAtIndex(targetIndex - 1)
 
     if (sourcePrev)
       sourcePrev.next = target
@@ -188,13 +194,26 @@ class LinkedList<T = unknown> {
     if (this.isEmpty || (index >= this.count || index < 0)) return undefined
 
     let current = this.head!
-    if (index === 0) {
-      this.head = current.next
+    if (this.size === 1) {
+      current = this.head!
+      this.tail = undefined
+      this.head = undefined
     }
     else {
-      const prev = this.elementAt(index - 1)!
-      current = prev.next!
-      prev.next = current.next
+      const prev = this.elementAtIndex(index - 1)
+      if (prev == null) {
+        current = this.head!
+        this.head = this.head?.next
+      }
+      else if (prev.next === this.tail) {
+        current = this.tail!
+        this.tail = prev
+        prev.next = undefined
+      }
+      else {
+        current = prev.next!
+        prev.next = current.next
+      }
     }
 
     this.count--
@@ -231,13 +250,21 @@ class LinkedList<T = unknown> {
       return false
 
     const node = new LinkedNode(val)
-    if (index === 0) {
+    if (this.size === 0) {
+      this.head = node
+      this.tail = node
+    }
+    else if (index === 0) {
       const current = this.head
       this.head = node
       node.next = current
     }
+    else if (index === this.size) {
+      this.tail!.next = node
+      this.tail = node
+    }
     else {
-      const prev = this.elementAt(index - 1)!
+      const prev = this.elementAtIndex(index - 1)!
       const current = prev.next!
       prev.next = node
       node.next = current
@@ -251,8 +278,10 @@ class LinkedList<T = unknown> {
    * @param index {number} 索引
    * @returns {LinkedNode<T>}
    */
-  protected elementAt(index: number) {
+  protected elementAtIndex(index: number) {
     if (this.isEmpty || (index >= this.count || index < 0)) return undefined
+    if (index === this.size - 1)
+      return this.tail
 
     let current = this.head
     for (let i = 0; i < index && current; i++)
