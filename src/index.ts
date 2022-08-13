@@ -6,6 +6,8 @@ import Queue from './core/Queue'
 import PriorityQueue from './core/Queue/PriorityQueue'
 import Stack from './core/Stack'
 
+import { transformZTree } from './core/ZTree/index'
+
 export {
   PriorityQueue,
   LinkedList,
@@ -14,4 +16,6 @@ export {
   Stack,
   BSTree,
   LRU,
+
+  transformZTree,
 }
