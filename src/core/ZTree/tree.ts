@@ -52,6 +52,7 @@ class ZTree <T extends object> {
 
   remove() {
     this._root = []
+    return this
   }
 
   private initNodeList(data: Array<ZRawITem<T>>) {
