@@ -12,11 +12,12 @@ function initState() {
 
 let dataSource = initState()
 let treeData = transformZTree(dataSource, { parentKeyName: 'parentId', rootVal: '0' })
-const treeList = new ZTree(treeData)
+let treeList = new ZTree(treeData)
 
 afterEach(() => {
   dataSource = initState()
   treeData = transformZTree(dataSource, { parentKeyName: 'parentId', rootVal: '0' })
+  treeList = new ZTree(treeData)
 })
 
 describe('transformZTree', () => {
@@ -81,5 +82,16 @@ describe('transformZTree', () => {
       result.push(item.data.id)
     })
     expect(result).toEqual(['1', '2'])
+  })
+
+  it('getPathNode ok', () => {
+    const result: any[] = []
+    const node = treeList.find((item) => {
+      return item.data.id === '11'
+    })
+    node?.getPathNode().forEach((item) => {
+      result.push(item.data.id)
+    })
+    expect(result).toEqual(['1', '11'])
   })
 })

@@ -7,6 +7,10 @@ class TreeNode<T extends object> {
   ) {
   }
 
+  get isRoot() {
+    return this.parent === null
+  }
+
   add(node: TreeNode<T>) {
     node.setParent(this)
     this.children.push(node)
@@ -61,6 +65,19 @@ class TreeNode<T extends object> {
     }
 
     return null
+  }
+
+  getPathNode() {
+    const stack = []
+    stack.unshift(this)
+
+    let current = this.parent
+    while (current) {
+      stack.unshift(current)
+      current = current.parent
+    }
+
+    return stack
   }
 
   private traverse(callback: (node: TreeNode<T>) => void) {
