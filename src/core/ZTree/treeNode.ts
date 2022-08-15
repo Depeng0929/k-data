@@ -30,7 +30,7 @@ class TreeNode<T extends object> {
     return this
   }
 
-  removeChildren(callback: (node: TreeNode<T>) => boolean) {
+  filter(callback: (node: TreeNode<T>) => boolean) {
     this.traverse((node) => {
       if (callback(node))
         node.remove()

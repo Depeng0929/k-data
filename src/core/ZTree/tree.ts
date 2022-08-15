@@ -25,11 +25,11 @@ class ZTree <T extends object> {
     return this
   }
 
-  removeChildren(callback: (node: TreeNode<T>) => boolean) {
+  filter(callback: (node: TreeNode<T>) => boolean) {
     this._root = this._root.filter(item => !callback(item))
 
     this._root.forEach((node) => {
-      node.removeChildren(callback)
+      node.filter(callback)
     })
 
     return this

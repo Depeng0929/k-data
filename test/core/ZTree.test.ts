@@ -71,4 +71,15 @@ describe('transformZTree', () => {
     })
     expect(result).toEqual(['11', '111'])
   })
+
+  it('filter', () => {
+    const result: any[] = []
+    const node = treeList.filter((item) => {
+      return item.data.id === '11'
+    })
+    node?.forEach((item) => {
+      result.push(item.data.id)
+    })
+    expect(result).toEqual(['1', '2'])
+  })
 })
