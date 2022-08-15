@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest'
-import { transformZTree } from '../../src/index'
+import { ZTree, transformZTree } from '../../src/index'
 
 function initState() {
   return [
@@ -11,9 +11,12 @@ function initState() {
 }
 
 let dataSource = initState()
+let treeData = transformZTree(dataSource, { parentKeyName: 'parentId', rootVal: '0' })
+const treeList = new ZTree(treeData)
 
 afterEach(() => {
   dataSource = initState()
+  treeData = transformZTree(dataSource, { parentKeyName: 'parentId', rootVal: '0' })
 })
 
 describe('transformZTree', () => {
@@ -43,5 +46,29 @@ describe('transformZTree', () => {
         parentId: '0',
       },
     ])
+  })
+
+  it('init', () => {
+    const result: any[] = []
+    treeList.forEach((item) => {
+      result.push(item.data.id)
+    })
+    expect(result).toEqual([
+      '1',
+      '11',
+      '111',
+      '2',
+    ])
+  })
+
+  it('find', () => {
+    const result: any[] = []
+    const node = treeList.find((item) => {
+      return item.data.id === '11'
+    })
+    node?.forEach((item) => {
+      result.push(item.data.id)
+    })
+    expect(result).toEqual(['11', '111'])
   })
 })
